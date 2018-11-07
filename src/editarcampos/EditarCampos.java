@@ -16,6 +16,10 @@ public class EditarCampos {
      */
     public static void main(String[] args) {
         System.out.println("editado");
+        System.out.println("editado");
+        System.out.println("editado");
+        System.out.println("editado");
+        
     }
     
 }
