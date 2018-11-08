@@ -7,8 +7,8 @@ package br.com.tool.modal;
 
 /**
  *
- * @author Diego
+ * @author Matheus
  */
-public class NewClass {
+public class Campaign {
     
 }

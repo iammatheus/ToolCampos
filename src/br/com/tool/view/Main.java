@@ -5,6 +5,14 @@
  */
 package br.com.tool.view;
 
+import br.com.tool.modal.FreeDuel;
+import br.com.tool.util.LendoFree;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.xml.bind.DatatypeConverter;
+
 /**
  *
  * @author Diego
@@ -33,7 +41,7 @@ public class Main extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         rSButtonRound1 = new rojerusan.RSButtonRound();
         rSComboMetro1 = new rojerusan.RSComboMetro();
-        rSButtonRound4 = new rojerusan.RSButtonRound();
+        btt_Abrir = new rojerusan.RSButtonRound();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList<>();
@@ -57,8 +65,13 @@ public class Main extends javax.swing.JFrame {
 
         rSComboMetro1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FOREST", "WASTELAND", "MOUNTAIN", "SOGEN", "UMI", "YAMI" }));
 
-        rSButtonRound4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arquivos/open2_file.png"))); // NOI18N
-        rSButtonRound4.setBorderPainted(false);
+        btt_Abrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arquivos/open2_file.png"))); // NOI18N
+        btt_Abrir.setBorderPainted(false);
+        btt_Abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btt_AbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,14 +88,14 @@ public class Main extends javax.swing.JFrame {
                         .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rSButtonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(btt_Abrir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(1, 1, 1)
-                .addComponent(rSButtonRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btt_Abrir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rSButtonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -161,6 +174,16 @@ public class Main extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btt_AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btt_AbrirActionPerformed
+        // TODO add your handling code here:
+        JFileChooser file = new JFileChooser();
+        int retorno = file.showOpenDialog(null);
+        
+        if(retorno == JFileChooser.APPROVE_OPTION){
+            FreeDuel.setFreeDuel(file.getSelectedFile());
+        }
+    }//GEN-LAST:event_btt_AbrirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -197,6 +220,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private rojerusan.RSButtonRound btt_Abrir;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
@@ -207,7 +231,6 @@ public class Main extends javax.swing.JFrame {
     private rojerusan.RSButtonRound rSButtonRound1;
     private rojerusan.RSButtonRound rSButtonRound2;
     private rojerusan.RSButtonRound rSButtonRound3;
-    private rojerusan.RSButtonRound rSButtonRound4;
     private rojerusan.RSComboMetro rSComboMetro1;
     private rojerusan.RSComboMetro rSComboMetro2;
     // End of variables declaration//GEN-END:variables

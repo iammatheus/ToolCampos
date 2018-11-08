@@ -80,7 +80,7 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="rSButtonRound4" min="-2" pref="50" max="-2" attributes="0"/>
+                              <Component id="btt_Abrir" min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -91,7 +91,7 @@
                   <Component id="jScrollPane1" pref="313" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="rSButtonRound4" min="-2" max="-2" attributes="0"/>
+                      <Component id="btt_Abrir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="rSButtonRound1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -180,13 +180,16 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="rojerusan.RSButtonRound" name="rSButtonRound4">
+            <Component class="rojerusan.RSButtonRound" name="btt_Abrir">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/arquivos/open2_file.png"/>
                 </Property>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btt_AbrirActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
