@@ -38,9 +38,9 @@ public class Main extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jL_Nomes = new javax.swing.JList<>();
         rSButtonRound1 = new rojerusan.RSButtonRound();
-        rSComboMetro1 = new rojerusan.RSComboMetro();
+        coBox_Filds = new rojerusan.RSComboMetro();
         btt_Abrir = new rojerusan.RSButtonRound();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -50,20 +50,29 @@ public class Main extends javax.swing.JFrame {
         rSButtonRound3 = new rojerusan.RSButtonRound();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setType(java.awt.Window.Type.UTILITY);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jL_Nomes.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "SIMON", "TEA", "JONO", "VILAGER 1", "VILAGER 2", "VILAGER 3", "SETO 1", "HEISHIN", "REX", "WEEVIL", "MAI", "BADIT KEITH", "SHADI", "YAMI BAKURA", "PEGASUS", "ISIS", "KAIBA", "MAGE SOLDIER", "JONO 2ND", "TEA 2ND", "OCEAN MAGE", "SECMETON", "FOREST MAGE", "ANUBISIUS", "MOUNTAIN MAGE", "ATEZA", "DESERT MAGE", "MARTIS", "MEADOW MAGE", "KEPURA", "LABYRINTH MAGE", "SETO 2ND", "GUARDIAN SEBEK", "GUARDIAN NEKU", "HEISHIN 2ND", "SETO 3RD", "DARKNITE", "NITEMARE", "DUEL MASTER K" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jL_Nomes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jL_NomesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jL_Nomes);
 
         rSButtonRound1.setText("Salvar");
+        rSButtonRound1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonRound1ActionPerformed(evt);
+            }
+        });
 
-        rSComboMetro1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FOREST", "WASTELAND", "MOUNTAIN", "SOGEN", "UMI", "YAMI" }));
+        coBox_Filds.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Forest", "Wasteland", "Mountain", "Meadow", "Sea", "Dark" }));
 
         btt_Abrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arquivos/open2_file.png"))); // NOI18N
         btt_Abrir.setBorderPainted(false);
@@ -84,7 +93,7 @@ public class Main extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(rSButtonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rSComboMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(coBox_Filds, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(22, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -99,7 +108,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rSButtonRound1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(rSComboMetro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(coBox_Filds, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -178,11 +187,28 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFileChooser file = new JFileChooser();
         int retorno = file.showOpenDialog(null);
-        
-        if(retorno == JFileChooser.APPROVE_OPTION){
+
+        if (retorno == JFileChooser.APPROVE_OPTION) {
             FreeDuel.setFreeDuel(file.getSelectedFile());
         }
     }//GEN-LAST:event_btt_AbrirActionPerformed
+
+    private void jL_NomesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jL_NomesMouseClicked
+        if (jL_Nomes.getSelectedValue().equals(jL_Nomes.getSelectedValue())) {
+            try {
+                byte[] campos = LendoFree.campos(jL_Nomes.getSelectedIndex());
+                String printHexBinary = DatatypeConverter.printHexBinary(campos);
+                System.out.println("Hex "+printHexBinary);
+                coBox_Filds.setSelectedIndex(Integer.parseInt(printHexBinary));
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jL_NomesMouseClicked
+
+    private void rSButtonRound1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonRound1ActionPerformed
+    
+    }//GEN-LAST:event_rSButtonRound1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,7 +247,8 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonRound btt_Abrir;
-    private javax.swing.JList<String> jList1;
+    private rojerusan.RSComboMetro coBox_Filds;
+    private javax.swing.JList<String> jL_Nomes;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -231,7 +258,6 @@ public class Main extends javax.swing.JFrame {
     private rojerusan.RSButtonRound rSButtonRound1;
     private rojerusan.RSButtonRound rSButtonRound2;
     private rojerusan.RSButtonRound rSButtonRound3;
-    private rojerusan.RSComboMetro rSComboMetro1;
     private rojerusan.RSComboMetro rSComboMetro2;
     // End of variables declaration//GEN-END:variables
 }
